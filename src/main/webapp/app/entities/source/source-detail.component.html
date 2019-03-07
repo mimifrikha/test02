@@ -1,0 +1,47 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="source">
+            <h2><span>Source</span> {{source.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nom</span></dt>
+                <dd>
+                    <span>{{source.nom}}</span>
+                </dd>
+                <dt><span>Uml</span></dt>
+                <dd>
+                    <span>{{source.uml}}</span>
+                </dd>
+                <dt><span>Data Handler</span></dt>
+                <dd>
+                    <span>{{source.dataHandler}}</span>
+                </dd>
+                <dt><span>Notification</span></dt>
+                <dd>
+                    <div *ngIf="source.notification">
+                        <a [routerLink]="['/notification', source.notification?.id, 'view']">{{source.notification?.note}}</a>
+                    </div>
+                </dd>
+                <dt><span>Motcle</span></dt>
+                <dd>
+                    <span *ngFor="let motcle of source.motcles; let last = last">
+                        <a [routerLink]="['/motcle', motcle?.id, 'view' ]">{{motcle.nom}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/source', source.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

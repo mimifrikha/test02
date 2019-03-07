@@ -1,0 +1,53 @@
+{
+    "name": "Source",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "uml",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataHandler",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "notification",
+            "otherEntityRelationshipName": "source",
+            "relationshipName": "notification",
+            "otherEntityField": "note",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "motcle",
+            "otherEntityRelationshipName": "source",
+            "relationshipName": "motcle",
+            "otherEntityField": "nom",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190307170210",
+    "entityTableName": "source",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
