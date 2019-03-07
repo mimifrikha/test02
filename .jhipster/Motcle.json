@@ -1,0 +1,45 @@
+{
+    "name": "Motcle",
+    "fields": [
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "etat",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "notification",
+            "otherEntityRelationshipName": "motcle",
+            "relationshipName": "notification",
+            "otherEntityField": "note"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "source",
+            "otherEntityRelationshipName": "motcle",
+            "relationshipName": "source",
+            "otherEntityField": "id",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20190307170211",
+    "entityTableName": "motcle",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

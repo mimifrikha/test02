@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="motcle">
+            <h2><span>Motcle</span> {{motcle.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nom</span></dt>
+                <dd>
+                    <span>{{motcle.nom}}</span>
+                </dd>
+                <dt><span>Etat</span></dt>
+                <dd>
+                    <span>{{motcle.etat}}</span>
+                </dd>
+                <dt><span>Notification</span></dt>
+                <dd>
+                    <div *ngIf="motcle.notification">
+                        <a [routerLink]="['/notification', motcle.notification?.id, 'view']">{{motcle.notification?.note}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/motcle', motcle.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

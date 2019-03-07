@@ -1,0 +1,70 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-source-heading">Create or edit a Source</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!source.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="source.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nom">Nom</label>
+                    <input type="text" class="form-control" name="nom" id="field_nom"
+                        [(ngModel)]="source.nom" required/>
+                    <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.nom?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_uml">Uml</label>
+                    <input type="text" class="form-control" name="uml" id="field_uml"
+                        [(ngModel)]="source.uml" required/>
+                    <div [hidden]="!(editForm.controls.uml?.dirty && editForm.controls.uml?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.uml?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dataHandler">Data Handler</label>
+                    <input type="text" class="form-control" name="dataHandler" id="field_dataHandler"
+                        [(ngModel)]="source.dataHandler" required/>
+                    <div [hidden]="!(editForm.controls.dataHandler?.dirty && editForm.controls.dataHandler?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dataHandler?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_notification">Notification</label>
+                    <select class="form-control" id="field_notification" name="notification" [(ngModel)]="source.notification">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="notificationOption.id === source.notification?.id ? source.notification : notificationOption" *ngFor="let notificationOption of notifications; trackBy: trackNotificationById">{{notificationOption.note}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_motcle">Motcle</label>
+                    <select class="form-control" id="field_motcle" multiple name="motcle" [(ngModel)]="source.motcles">
+                        <option [ngValue]="getSelected(source.motcles, motcleOption)" *ngFor="let motcleOption of motcles; trackBy: trackMotcleById">{{motcleOption.nom}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
