@@ -1,0 +1,30 @@
+
+
+entity Source{
+    nom String required,
+    uml String required,
+    dataHandler String required
+}
+entity Motcle{
+    nom String required,
+   etat String required
+   
+}
+entity Notification{
+    note String required,
+   type String required
+   
+}
+relationship ManyToOne {
+    Motcle{Notification(note)} to Notification,
+   
+}
+relationship OneToOne {
+    Source{Notification(note)} to Notification,
+   
+}
+
+relationship ManyToMany {
+   Source{Motcle(nom)} to Motcle{Source}
+}
+paginate Source, Motcle with infinite-scroll
